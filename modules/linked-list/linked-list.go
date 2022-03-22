@@ -194,3 +194,29 @@ func reverseList(head *ListNode) *ListNode {
 
     return prev
 }
+
+func removeElements(head *ListNode, val int) *ListNode {
+    newHead := head
+    var prev *ListNode
+
+    cur := head
+    for cur != nil {
+        // Need to remove current element
+        if cur.Val == val {
+
+            // first el is match -- increment cur and head
+            if prev == nil {
+                newHead = cur.Next
+                cur = cur.Next
+                continue
+            }
+
+            prev.Next = cur.Next
+            cur = cur.Next
+        } else {
+            prev = cur
+            cur = cur.Next
+        }
+    }
+    return newHead
+}
